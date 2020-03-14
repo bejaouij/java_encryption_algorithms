@@ -3,6 +3,8 @@ package helper.encryption.test;
 import helper.encryption.CryptoManager;
 import helper.encryption.CryptoManagerFactory;
 
+import java.security.Key;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DESCryptoManagerTest {
@@ -29,5 +31,15 @@ class DESCryptoManagerTest {
         byte[] clearMessage = desCryptoManger.decrypt(encryptedMessage);
 
         assertNotEquals(clearMessageString, new String(clearMessage), "Clear is the same after encryption and decryption process with a wrong message.");
+    }
+
+    @org.junit.jupiter.api.Test
+    void parseBytesToKey() {
+        CryptoManager desCryptoManger = CryptoManagerFactory.getDESCryptoManager();
+
+        byte[] desKeyContent = desCryptoManger.getSymmetricEncryptionKey().getEncoded();
+        Key parsedKey = desCryptoManger.parseBytesToKey(desKeyContent);
+
+        assertEquals(desCryptoManger.getSymmetricEncryptionKey(), parsedKey, "Parsed key has been corrupt.");
     }
 }

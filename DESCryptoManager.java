@@ -1,6 +1,10 @@
 package helper.encryption;
 
 import javax.crypto.KeyGenerator;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 public class DESCryptoManager extends CryptoManager {
@@ -26,5 +30,10 @@ public class DESCryptoManager extends CryptoManager {
     @Override
     public byte[] decrypt(byte[] encryptedMessage) {
         return encryption(encryptedMessage, DECRYPT_MODE, DES_ENCRYPT_METHOD, symmetricEncryptionKey);
+    }
+
+    @Override
+    public Key parseBytesToKey(byte[] keyContent) {
+        return new SecretKeySpec(keyContent, DES_ENCRYPT_METHOD);
     }
 }

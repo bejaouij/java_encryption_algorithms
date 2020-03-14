@@ -3,6 +3,8 @@ package helper.encryption.test;
 import helper.encryption.CryptoManager;
 import helper.encryption.CryptoManagerFactory;
 
+import java.security.Key;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RSACryptoManagerTest {
@@ -29,5 +31,15 @@ class RSACryptoManagerTest {
         byte[] clearMessage = rsaCryptoManger.decrypt(encryptedMessage);
 
         assertNotEquals(clearMessageString, new String(clearMessage), "Clear is the same after encryption and decryption process with a wrong message.");
+    }
+
+    @org.junit.jupiter.api.Test
+    void parseBytesToKey() {
+        CryptoManager rsaCryptoManger = CryptoManagerFactory.getRSACryptoManager();
+
+        byte[] rsaKeyContent = rsaCryptoManger.getAsymmetricPublicKey().getEncoded();
+        Key parsedKey = rsaCryptoManger.parseBytesToKey(rsaKeyContent);
+
+        assertEquals(rsaCryptoManger.getAsymmetricPublicKey(), parsedKey, "Parsed key has been corrupt.");
     }
 }

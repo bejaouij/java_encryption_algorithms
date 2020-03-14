@@ -103,4 +103,12 @@ public abstract class CryptoManager {
      * @return the encrypted message
      */
     public abstract byte[] encrypt(byte[] clearMessage);
+
+    /**
+     * Parse given bytes to a key
+     *
+     * @param keyContent : the key content
+     * @return the parsed key
+     */
+    public abstract Key parseBytesToKey(byte[] keyContent);
 }
