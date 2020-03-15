@@ -50,4 +50,15 @@ public class RSACryptoManager extends CryptoManager {
 
         return null;
     }
+
+    /**
+     * Encrypt a given message with a specified key
+     *
+     * @param clearMessage : the message to encrypt
+     * @param encryptionKey : the key used to encrypt the message
+     * @return the encrypted message
+     */
+    public byte[] encrypt(byte[] clearMessage, Key encryptionKey) {
+        return encryption(clearMessage, ENCRYPT_MODE, RSA_ENCRYPT_METHOD, encryptionKey);
+    }
 }

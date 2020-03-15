@@ -36,15 +36,6 @@ public abstract class CryptoManager {
     }
 
     /**
-     * Get the asymmetric private encryption key
-     *
-     * @return the asymmetric private encryption key
-     */
-    public Key getAsymmetricPrivateKey() {
-        return asymmetricPrivateKey;
-    }
-
-    /**
      * Process an encryption on a provided message.
      *
      * @param message : the message to encrypt or decrypt

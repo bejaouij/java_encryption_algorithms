@@ -19,7 +19,12 @@ public class DESCryptoManager extends CryptoManager {
         }
 
         keyGenerator.init(DES_KEY_LENGTH);
+
         symmetricEncryptionKey = keyGenerator.generateKey();
+    }
+
+    public DESCryptoManager(Key encryptionKey) {
+        symmetricEncryptionKey = encryptionKey;
     }
 
     @Override
